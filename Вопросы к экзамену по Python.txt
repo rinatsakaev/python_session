@@ -1,0 +1,37 @@
+﻿Теоретические вопросы к экзамену (2018 год)
+1. Функции. Декораторы.
+Модуль functools.
+2. Базовые структуры данных: tuple, list, set, frozenset, dict. Comprehensions.
+Модули copy, collections, heapq, enum.
+3. Строки, кодировки.
+Модули string, unicodedata, codecs.
+4. Работа с файлами и бинарными данными.
+Модули os, os.path, glob, struct.
+5. Регулярные выражения.
+Модуль re.
+6. Классы и объекты. Наследование, mro.
+Модули abc, collections.abc, inspect.
+7. Итераторы. Генераторы.
+Модули itertools, operator.
+8. Исключения.
+Модуль contextlib.
+9. Модули, пакеты, пространства имён, области видимости. Импорт.
+Модули sys, types, builtins, importlib.
+10. Потоки. Процессы.
+Модули threading, multiprocessing, subprocess, concurrent.futures.
+11. Асинхронное программирование.
+Модуль asyncio.
+12. Сериализация.
+Модули pickle, json, csv.
+13. Тестирование.
+Модуль unittest.
+14. CUI, GUI.
+Модули argparse, readline; PyQt*/tkinter (или аналогичные).
+15. Работа с сетью.
+Модули socket, select, selectors.
+16. Отладка, обработка ошибок, логирование, профилирование.
+Модули pdb, logging, profile.
+17. Joker. ;)
+Модуль this.
+Практические вопросы к экзамену
+Любая задача из списка https://anytask.org/course/319, которая не была сдана в течение семестра.
