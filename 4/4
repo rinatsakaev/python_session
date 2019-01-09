@@ -1,0 +1,71 @@
+работаем с файлом через with open(filename, mode) as f
+методы:
+readlines() - читает строки в лист
+read(n) - читает n байт в байтовую строку
+readline(limit) - читает одну строку, до limit символов
+isatty() - ассоциирован ли файл с  tty, т.е с терминальным устройством. Принтером, например.
+fileno() - получить номер файлового дескриптора
+###########модуль os.path
+предоставляет методы для работы с путями
+os.path.join(path1[, path2[, ...]]) - соединяет пути с учётом особенностей операционной системы.
+
+os.path.normcase(path) - нормализует регистр пути (на файловых системах, не учитывающих регистр, приводит путь к нижнему регистру).
+
+os.path.normpath(path) - нормализует путь, убирая избыточные разделители и ссылки на предыдущие директории. На Windows преобразует прямые слеши в обратные.
+
+os.path.realpath(path) - возвращает канонический путь, убирая все символические ссылки (если они поддерживаются).
+
+os.path.relpath(path, start=None) - вычисляет путь относительно директории start (по умолчанию - относительно текущей директории).
+
+os.path.samefile(path1, path2) - указывают ли path1 и path2 на один и тот же файл или директорию.
+и много других
+############# glob
+регулярки для поиска файлов
+For example, consider a directory containing the following files: 1.gif, 2.txt, card.gif and
+a subdirectory sub which contains only the file 3.txt.
+glob() will produce the following results. Notice how any leading components of the path are preserved.
+
+>>>
+>>> import glob
+>>> glob.glob('./[0-9].*')
+['./1.gif', './2.txt']
+>>> glob.glob('*.gif')
+['1.gif', 'card.gif']
+>>> glob.glob('?.gif')
+['1.gif']
+>>> glob.glob('**/*.txt', recursive=True)
+['2.txt', 'sub/3.txt']
+>>> glob.glob('./**/', recursive=True)
+['./', './sub/']
+
+iglob - то же самое, но возвращает итератор
+#######################struct
+можем закодировать последовательность в байты и передать ее по сети
+Format	C Type	Python type	Standard size	Notes
+x	pad byte	no value
+c	char	bytes of length 1	1
+b	signed char	integer	1	(1),(3)
+B	unsigned char	integer	1	(3)
+?	_Bool	bool	1	(1)
+h	short	integer	2	(3)
+H	unsigned short	integer	2	(3)
+i	int	integer	4	(3)
+I	unsigned int	integer	4	(3)
+l	long	integer	4	(3)
+L	unsigned long	integer	4	(3)
+q	long long	integer	8	(2), (3)
+Q	unsigned long long	integer	8	(2), (3)
+n	ssize_t	integer	 	(4)
+N	size_t	integer	 	(4)
+e	(7)	float	2	(5)
+f	float	float	4	(5)
+d	double	float	8	(5)
+s	char[]	bytes
+p	char[]	bytes
+P	void *	integer	 	(6)
+>>> pack('hhl', 1, 2, 3)
+b'\x00\x01\x00\x02\x00\x00\x00\x03'
+>>> unpack('hhl', b'\x00\x01\x00\x02\x00\x00\x00\x03')
+(1, 2, 3)
+>>> calcsize('hhl')
+8

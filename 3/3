@@ -1,0 +1,106 @@
+кодировка по умолчанию - utf8
+● \n - перевод строки
+● \r - возврат каретки
+● \t - горизонтальная табуляция
+● \v - вертикальная табуляция
+● \xhh - 16-ричное значение символа
+сырые строки
+байтовые строки: s = b"abc". Каждый символ - число от 0 до 255. Immutable.
+Поддерживают те же самые операции, что и обычные строки: конкатенация, len, индексация
+bytearray - как bytes, только mutable
+
+По умолчанию в python3 используется кодировка UTF-8, все объекты str хранятся в этой
+кодировке. Нестанадартные символы могут быть заданы экранирующими последовательностями:
+\u0394 # Используем 16-битное значение
+\U00000394 # Используем 32-битное значение
+
+Еще один способ создать строку - метод decode() объекта bytes. В качестве аргумента он
+принимает кодировку:
+s1 = b"\x80abc".decode("utf-8") # abc
+Кодировка задается в виде предопределенной строки. Python 3 поддерживает около 100
+кодировок.
+Обратный метод преобразования, str.encode() возвращает объект bytes - представление
+строки в виде байтов с учетом конкретной кодировки. Принимает те же аргументы на вход, что и
+decode().
+#################модуль string
+константы:
+    string.ascii_letters
+    string.ascii_lowercase
+    string.ascii_uppercase
+    string.digits
+    string.hexdigits
+    string.octdigits
+    string.punctuation
+    string.printable
+    string.whitespace
+string.parse
+
+>>> parse("Bring me a {}", "Bring me a shrubbery")
+<Result ('shrubbery',) {}>
+>>> r = parse("The {} who say {}", "The knights who say Ni!")
+>>> print(r)
+<Result ('knights', 'Ni!') {}>
+>>> print(r.fixed)
+('knights', 'Ni!')
+>>> r = parse("Bring out the holy {item}", "Bring out the holy hand grenade")
+>>> print(r)
+<Result () {'item': 'hand grenade'}>
+>>> print(r.named)
+{'item': 'hand grenade'}
+>>> print(r['item'])
+hand grenade
+
+formatting:
+>>> c = 3-5j
+>>> ('The complex number {0} is formed from the real part {0.real} '
+...  'and the imaginary part {0.imag}.').format(c)
+'The complex number (3-5j) is formed from the real part 3.0 and the imaginary part -5.0.'
+>>> class Point:
+...     def __init__(self, x, y):
+...         self.x, self.y = x, y
+...     def __str__(self):
+...         return 'Point({self.x}, {self.y})'.format(self=self)
+...
+>>> str(Point(4, 2))
+'Point(4, 2)'
+
+>>> coord = (3, 5)
+>>> 'X: {0[0]};  Y: {0[1]}'.format(coord)
+'X: 3;  Y: 5'
+
+выравнивание:
+>>> '{:<30}'.format('left aligned')
+'left aligned                  '
+>>> '{:>30}'.format('right aligned')
+'                 right aligned'
+>>> '{:^30}'.format('centered')
+'           centered           '
+>>> '{:*^30}'.format('centered')  # use '*' as a fill char
+'***********centered***********'
+Templates
+>>> from string import Template
+>>> s = Template('$who likes $what')
+>>> s.substitute(who='tim', what='kung pao')
+'tim likes kung pao'
+>>> d = dict(who='tim')
+>>> Template('Give $who $100').substitute(d)
+Traceback (most recent call last):
+...
+ValueError: Invalid placeholder in string: line 1, col 11
+>>> Template('$who likes $what').substitute(d)
+Traceback (most recent call last):
+...
+KeyError: 'what'
+>>> Template('$who likes $what').safe_substitute(d)
+'tim likes $what'
+
+###################unicodedata
+Просто интерфейс для взаимодействия с базой юникода
+>>> import unicodedata
+>>> unicodedata.lookup('LEFT CURLY BRACKET')
+u'{'
+>>> unicodedata.name(u'/')
+'SOLIDUS'
+и так далее
+##################codecs
+пример в коде

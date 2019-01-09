@@ -44,8 +44,8 @@ class A:
 # декоратор класса
 def addAnotherArg(cls):
     class AddAnotherArg(cls):
-        def __init__(self, some_arg, another_arg, *args, **kwargs):
-            super(AddAnotherArg, self).__init__(some_arg, *args, **kwargs)
+        def __init__(self, another_arg, *args, **kwargs):
+            cls.__init__(self, *args, **kwargs)
             self.another_arg = another_arg
 
     return AddAnotherArg
@@ -67,5 +67,6 @@ if __name__ == '__main__':
     a.say_age("etete")
     print([f for f in globals().values() if type(f) == types.FunctionType])
     b = B(1,3)
+
 
     pass
